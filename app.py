@@ -52,29 +52,6 @@ def why():
 
 
 @app.route('/login', methods=['GET', 'POST'])
-# def login():
-# 	if request.method == 'POST' and 'mail' in request.form and 'password' in request.form:
-# 		mail = request.form['mail']
-# 		password = request.form['password']
-# 		cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-# 		cursor.execute('SELECT * FROM users WHERE mail = % s AND password1 = % s', (mail, password, ))
-# 		account = cursor.fetchone()
-# 		cursor.execute('SELECT user_name FROM users WHERE mail = % s AND password1 = % s', (mail, password, ))
-# 		# fetch the value from the dictionary
-# 		user_name = cursor.fetchone()['user_name']
-# 		if account:
-# 			session['loggedin'] = True
-# 			session['mail'] = account['mail']  # database la irukrathu
-# 			session['user_name'] = account['user_name']  # database la irukrathu
-# 			flash(f"Welcome {user_name} :)")
-# 			return redirect(url_for("home"))
-# 		else:
-# 			flash('Incorrect mail id / password !')
-# 			return redirect(url_for("login"))
-
-# 	return render_template('login.html')
-
-
 def login():
     if request.method == 'POST' and 'mail' in request.form and 'password' in request.form:
         mail = request.form['mail']
@@ -97,8 +74,6 @@ def login():
 
     return render_template('login.html')
 
-
-
 @app.route('/logout')
 def logout():
 	session.pop('loggedin', None)
@@ -106,7 +81,6 @@ def logout():
 	session.pop('user_name', None)
 	flash('Logged out successfully!')
 	return redirect(url_for('index'))
-
 
 @app.route('/Sign up', methods=['GET', 'POST'])
 def Signup():
@@ -149,9 +123,6 @@ def Signup():
             flash('User details added. Now you can login.')
             return redirect(url_for("login"))
     return render_template('reg.html')
-
-
-
 
 ##############################################################################################################
 
@@ -260,7 +231,6 @@ def forecast():
 
 
 
-
 @app.route('/forecast_table', methods=['POST'])
 def forecast_table():
     if request.method == 'POST':
@@ -306,8 +276,6 @@ def forecast_table():
             return render_template('table_view_forecast.html', data=data, cname = cname)
 
     # Handle other HTTP methods or errors as needed
-
-
 
 
 #############################################################################################################
